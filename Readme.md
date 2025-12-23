@@ -24,6 +24,8 @@ The project consists of two independent generative engines:
 
 ## 📂 Project Structure
 
+```bash
+
 Generative_AI_Lab/
 │
 ├── checkpoints/             # Saved model weights  
@@ -49,6 +51,8 @@ Generative_AI_Lab/
 ├── test_denoiser.py         # Noise → Image restoration  
 │
 └── README.md
+
+```
 
 ---
 
