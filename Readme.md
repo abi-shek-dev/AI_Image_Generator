@@ -38,8 +38,7 @@ Generative_AI_Lab/
 │
 ├── models/                  # Model architectures  
 │   ├── cycle_gan.py         # ResNet Generator & PatchGAN Discriminator  
-│   ├── unet.py              # U-Net for diffusion  
-│   └── transformer.py      # Optional Vision Transformer components  
+│   └── unet.py              # U-Net for diffusion  
 │
 ├── utils/  
 │   └── diffusion_utils.py   # Noise scheduling & diffusion math  
