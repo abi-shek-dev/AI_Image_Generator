@@ -114,6 +114,9 @@ Test:
 python test_translator.py
 ```
 
+Example output for 20 epochs:
+<img width="998" height="503" alt="image" src="https://github.com/user-attachments/assets/8b2e802d-51a6-4e1f-ab6e-3f64c68e054d" />
+
 ---
 
 ## 🌫️ Engine 2: The Denoiser (Diffusion Model)
@@ -142,6 +145,9 @@ Test:
 ```bash
 python test_denoiser.py
 ```
+
+Example output for 20 epochs:
+<img width="1195" height="497" alt="image" src="https://github.com/user-attachments/assets/68c10d85-b987-44ba-a777-1023a1566068" />
 
 ---
 
