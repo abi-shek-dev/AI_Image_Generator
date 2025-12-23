@@ -41,7 +41,8 @@ Generative_AI_Lab/
 │   └── unet.py              # U-Net for diffusion  
 │
 ├── utils/  
-│   └── diffusion_utils.py   # Noise scheduling & diffusion math  
+│   ├── diffusion_utils.py   # Noise scheduling & diffusion math  
+│   └── download_data.py     # Download data for the model  
 │
 ├── train_translator.py      # CycleGAN training  
 ├── test_translator.py       # Translation visualization  
