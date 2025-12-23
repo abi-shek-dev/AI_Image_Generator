@@ -72,6 +72,13 @@ Run this script first to download and organize the required datasets (Horse2Zebr
 python download_data.py
 ```
 
+- To download horse2zebra dataset :
+
+```bash
+  https://www.kaggle.com/datasets/balnyaupane/horse2zebra
+```
+
+
 ---
 
 ## 🖥️ Hardware Used
