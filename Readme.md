@@ -63,6 +63,16 @@ pip install torch torchvision matplotlib tqdm requests pillow
 
 ---
 
+## 📥 Data Setup
+
+Run this script first to download and organize the required datasets (Horse2Zebra and CIFAR-10):
+
+```bash
+python download_data.py
+```
+
+---
+
 ## 🖥️ Hardware Used
 
 - **GPU:** NVIDIA RTX 3050 (4GB VRAM)  
