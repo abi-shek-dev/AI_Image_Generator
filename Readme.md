@@ -26,29 +26,30 @@ The project consists of two independent generative engines:
 
 Generative_AI_Lab/
 │
-├── checkpoints/             # Saved model weights  
-│   ├── cyclegan/            # Horse → Zebra model  
-│   └── diffusion/           # Diffusion model  
+├── checkpoints/               # Saved model weights
+│   ├── cyclegan/              # Horse → Zebra trained weights
+│   └── diffusion/             # Diffusion model checkpoints
 │
-├── data/                    # Datasets  
-│   ├── horse2zebra/         # Unpaired training images  
-│   └── denoise_data/        # CIFAR-10 (binary format)  
+├── data/                      # Dataset storage
+│   ├── horse2zebra/           # Unpaired Horse & Zebra images
+│   └── denoise_data/          # CIFAR-10 (binary format)
 │
-├── models/                  # Model architectures  
-│   ├── cycle_gan.py         # ResNet Generator & PatchGAN Discriminator  
-│   ├── unet.py              # U-Net for diffusion  
-│   └── transformer.py      # Optional Vision Transformer components  
+├── models/                    # Neural network architectures
+│   ├── cycle_gan.py           # ResNet Generator & PatchGAN Discriminator
+│   ├── unet.py                # U-Net architecture for diffusion
+│   └── transformer.py         # Optional Vision Transformer modules
 │
-├── utils/  
-│   └── diffusion_utils.py   # Noise scheduling & diffusion math  
+├── utils/
+│   └── diffusion_utils.py     # Noise schedules & diffusion math
 │
-├── train_translator.py      # CycleGAN training  
-├── test_translator.py       # Translation visualization  
+├── train_translator.py        # CycleGAN training script
+├── test_translator.py         # Image translation visualization
 │
-├── train_denoiser.py        # Diffusion training  
-├── test_denoiser.py         # Noise → Image restoration  
+├── train_denoiser.py          # Diffusion model training
+├── test_denoiser.py           # Noise → Image reconstruction
 │
 └── README.md
+
 
 ---
 
