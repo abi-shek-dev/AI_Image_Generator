@@ -9,18 +9,17 @@ from models.discriminator import Discriminator
 import os
 from tqdm import tqdm
 import glob
+import time
 
 # --- CONFIG ---
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 LR = 2e-4
 BATCH_SIZE = 1 
-EPOCHS = 40           # Set to 60 for good quality (approx 4.5 hours)
+EPOCHS = 60           # Target Goal
+RESUME_EPOCH = 35     # We resume from the last safe file (35)
 DATA_DIR = "data/horse2zebra"
 CHECKPOINT_DIR = "checkpoints/cyclegan"
-
-# Resume Settings
-RESUME_EPOCH = 19     # The last file you have (e.g., 19.pth)
-LOAD_MODEL = True     # Set True to look for that file
+LOAD_MODEL = True     
 
 def train():
     print(f"Initializing CycleGAN Training on {DEVICE}...")
@@ -59,11 +58,11 @@ def train():
             gen_AB.load_state_dict(torch.load(file_AB, map_location=DEVICE))
             gen_BA.load_state_dict(torch.load(file_BA, map_location=DEVICE))
             
-            # We start from the NEXT epoch
+            # Start from the NEXT epoch
             start_epoch = RESUME_EPOCH + 1
             print(f"✅ Resuming training from Epoch {start_epoch} to {EPOCHS}...")
         else:
-            print(f"❌ Checkpoint {file_AB} not found. Starting from scratch (Epoch 0).")
+            print(f"❌ Checkpoint {file_AB} not found. Starting from scratch.")
 
     # 5. Losses
     L1 = nn.L1Loss()
@@ -94,6 +93,9 @@ def train():
     )
     loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
 
+    # --- START TIMER ---
+    overall_start_time = time.time()
+
     # 6. Training Loop
     for epoch in range(start_epoch, EPOCHS):
         loop = tqdm(loader, leave=True)
@@ -105,12 +107,11 @@ def train():
             fake_A = gen_BA(real_B)
             fake_B = gen_AB(real_A)
 
-            # D_A
+            # D_A & D_B
             D_A_real = disc_A(real_A)
             D_A_fake = disc_A(fake_A.detach())
             loss_D_A = (mse(D_A_real, torch.ones_like(D_A_real)) + mse(D_A_fake, torch.zeros_like(D_A_fake))) / 2
 
-            # D_B
             D_B_real = disc_B(real_B)
             D_B_fake = disc_B(fake_B.detach())
             loss_D_B = (mse(D_B_real, torch.ones_like(D_B_real)) + mse(D_B_fake, torch.zeros_like(D_B_fake))) / 2
@@ -147,13 +148,23 @@ def train():
                 loop.set_description(f"Epoch [{epoch}/{EPOCHS}]")
                 loop.set_postfix(D_loss=loss_D.item(), G_loss=loss_G.item())
 
-        # --- SAVE EVERY 5 EPOCHS ---
-        if epoch % 5 == 0:
+        # --- UPDATED SAVING LOGIC ---
+        # Save if it's a multiple of 5 OR if it's the very last epoch (to fix the previous bug)
+        if (epoch % 5 == 0) or (epoch == EPOCHS - 1):
             os.makedirs(CHECKPOINT_DIR, exist_ok=True)
-            # Filenames will be: gen_horse2zebra_20.pth, 25.pth, 30.pth...
             torch.save(gen_AB.state_dict(), f"{CHECKPOINT_DIR}/gen_horse2zebra_{epoch}.pth")
             torch.save(gen_BA.state_dict(), f"{CHECKPOINT_DIR}/gen_zebra2horse_{epoch}.pth")
             print(f"✅ Saved Checkpoint for Epoch {epoch}")
+
+    # --- END TIMER ---
+    overall_end_time = time.time()
+    total_seconds = overall_end_time - overall_start_time
+    hours = int(total_seconds // 3600)
+    minutes = int((total_seconds % 3600) // 60)
+    seconds = int(total_seconds % 60)
+
+    print(f"\n🎉 TRAINING FINISHED!")
+    print(f"⏱️ Total Time Taken: {hours}h {minutes}m {seconds}s")
 
 if __name__ == "__main__":
     train()
