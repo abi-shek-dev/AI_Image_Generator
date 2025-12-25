@@ -29,6 +29,11 @@ def main():
         print(" [6] 🦓 Train Translator (CycleGAN - Horse2Zebra)")
         print(" [7] 🐴 Test Translator")
         print("-" * 30)
+        print(" [8] 🧩 Train VQ-VAE (Transformer Codebook)")
+        print(" [9] 🧩 Test VQ-VAE")
+        print(" [10] 🤖 Train Generative Transformer")
+        print(" [11] 🎨 Generate New Images (Transformer)")
+        print("-" * 30)
         print(" [Q] 🚪 Quit")
         print("=" * 60)
         
@@ -73,6 +78,26 @@ def main():
             print("\n🐴 Running Translator Test...")
             os.system("python test_translator.py")
             input("\nTest complete. Press Enter to continue...")
+            
+        elif choice == "8":
+            print("\n🧩 Starting VQ-VAE Training...")
+            os.system("python train_vqvae.py")
+            input("\nTraining stopped. Press Enter to continue...")
+            
+        elif choice == "9":
+            print("\n🧩 Running VQ-VAE Test...")
+            os.system("python test_vqvae.py")
+            input("\nTest complete. Press Enter to continue...")
+
+        elif choice == "10":
+            print("\n🤖 Starting Transformer Training...")
+            os.system("python train_transformer.py")
+            input("\nTraining stopped. Press Enter to continue...")
+            
+        elif choice == "11":
+            print("\n✨ Starting Image Generation...")
+            os.system("python test_transformer.py")
+            input("\nDone. Press Enter to continue...")
 
         elif choice == "Q":
             print("\nExiting Mission Control. Goodbye!")
