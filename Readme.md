@@ -46,6 +46,8 @@ Generative_AI_Lab/
 │
 ├── train_translator.py      # CycleGAN training  
 ├── test_translator.py       # Translation visualization  
+├── main_app.py              # Main app for interactive testing  
+├── monitor_dashboard.py     # monitoring dashboard
 │
 ├── train_denoiser.py        # Diffusion training  
 ├── test_denoiser.py         # Noise → Image restoration  
