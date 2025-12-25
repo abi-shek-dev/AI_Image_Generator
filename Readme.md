@@ -122,8 +122,14 @@ Test:
 python test_translator.py
 ```
 
-Example output for 20 epochs:
+Example output for 0 epochs:
 <img width="998" height="503" alt="image" src="https://github.com/user-attachments/assets/8b2e802d-51a6-4e1f-ab6e-3f64c68e054d" />
+
+Example output for 20 epochs:
+<img width="998" height="498" alt="image" src="https://github.com/user-attachments/assets/1e4bac95-65c2-4979-8185-a7871028058e" />
+
+Example output for 59 epochs:
+<img width="996" height="501" alt="image" src="https://github.com/user-attachments/assets/e902d014-ac11-420a-ad28-c947e355169b" />
 
 ---
 
@@ -154,8 +160,15 @@ Test:
 python test_denoiser.py
 ```
 
-Example output for 20 epochs:
-<img width="1195" height="497" alt="image" src="https://github.com/user-attachments/assets/68c10d85-b987-44ba-a777-1023a1566068" />
+Example output for 35 epochs with 50 noise steps:
+<img width="1203" height="498" alt="image" src="https://github.com/user-attachments/assets/8f5c1073-bfce-4d5d-b035-c4bb5fe17c44" />
+
+Example output for 35 epochs with 100 noise steps:
+<img width="1200" height="500" alt="image" src="https://github.com/user-attachments/assets/c7f882e5-5601-475a-b443-d4c9f59a61e0" />
+
+Example output for 35 epochs with 200 noise steps:
+<img width="1195" height="498" alt="image" src="https://github.com/user-attachments/assets/eda8b755-f371-4076-85e0-17dc9038f988" />
+
 
 ---
 

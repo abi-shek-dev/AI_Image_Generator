@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 # --- CONFIG ---
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # This will be the file created after Epoch 0 finishes
-CHECKPOINT_FILE = "checkpoints/cyclegan/gen_horse2zebra_0.pth" 
+CHECKPOINT_FILE = "checkpoints/cyclegan/gen_horse2zebra_59.pth" 
 TEST_IMAGE_PATH = "data/horse2zebra/testA/n02381460_120.jpg" # We pick a random horse to test
 
 def test():
