@@ -1,4 +1,5 @@
 # Generative AI Lab
+
 ## Domain Translation, Image Synthesis & Restoration
 
 **Project Status:** ✅ Completed  
@@ -9,6 +10,7 @@
 ---
 
 ## 📖 Project Overview
+
 This project explores three fundamental paradigms of modern Generative AI:
 
 - Unpaired Image-to-Image Translation (Style Transfer)  
@@ -81,6 +83,7 @@ pip install torch torchvision matplotlib tqdm requests pillow
 ---
 
 ## 📥 Data Setup
+
 Run this script first to download and organize the required datasets (CIFAR-10):
 
 ```bash
@@ -96,17 +99,21 @@ https://www.kaggle.com/datasets/balnyaupane/horse2zebra
 ---
 
 ## 🖥️ Hardware Used
+
 - **GPU:** NVIDIA RTX 3050 (4GB VRAM)  
 - **CUDA:** 11.8 / 12.x  
 
 ---
 
 ## 🦓 Engine 1: The Translator (CycleGAN)
+
 Implements **Cycle-Consistent Adversarial Networks**  
 (Zhu et al., ICCV 2017).
 
-### Concept
+### CycleGAN Concept
+
 Learns bidirectional mappings:
+
 - **G:** X → Y (Horse → Zebra)  
 - **F:** Y → X  
 
@@ -116,22 +123,26 @@ With cycle consistency:
 F(G(X)) ≈ X
 ```
 
-### Architecture
+### CycleGAN Architecture
+
 - Generator: ResNet-based (9 residual blocks)  
 - Discriminator: PatchGAN (70×70)  
 
 ### Loss
+
 - Adversarial Loss  
 - Cycle Consistency Loss  
 
-### How to Run
+### How to Run CycleGAN
 
 **Train:**
+
 ```bash
 python train_translator.py
 ```
 
 **Test:**
+
 ```bash
 python test_translator.py
 ```
@@ -145,31 +156,36 @@ Example output for 20 epochs:
 Example output for 59 epochs:
 <img width="996" height="501" alt="image" src="https://github.com/user-attachments/assets/e902d014-ac11-420a-ad28-c947e355169b" />
 
-
 ---
 
 ## 🌫️ Engine 2: The Denoiser (Diffusion Model)
+
 Implements a simplified **DDPM**  
 (Ho et al., NeurIPS 2020).
 
-### Concept
+### Diffusion Concept
+
 - Forward process: Adds Gaussian noise  
 - Reverse process: U-Net predicts and removes noise  
 
-### Architecture
+### Diffusion Architecture
+
 - Backbone: U-Net  
 
 ### Objective
+
 Minimize MSE between actual and predicted noise
 
-### How to Run
+### How to Run Diffusion
 
 **Train:**
+
 ```bash
 python train_denoiser.py
 ```
 
 **Test:**
+
 ```bash
 python test_denoiser.py
 ```
@@ -183,39 +199,43 @@ Example output for 35 epochs with 100 noise steps:
 Example output for 35 epochs with 200 noise steps:
 <img width="1195" height="498" alt="image" src="https://github.com/user-attachments/assets/eda8b755-f371-4076-85e0-17dc9038f988" />
 
-
-
 ---
 
 ## 🧩 Engine 3: The Generator (Transformer-Based)
+
 Implements **Vector Quantized Variational Autoencoder (VQ-VAE)**  
 combined with an **Autoregressive Transformer**  
 (similar to DALL-E 1 / VQGAN).
 
-### Concept
+### Transformer Concept
+
 **Stage 1 (Compression):**  
 The VQ-VAE learns to compress images into a discrete *Codebook* of tokens.
 
 **Stage 2 (Generation):**  
 A Transformer learns the sequence of these tokens to generate new images from imagination.
 
-### Architecture
+### Transformer Architecture
+
 - **VQ-VAE:** Encoder, Vector Quantizer (Codebook), Decoder  
 - **Transformer:** Causal Convolutional Transformer (PixelCNN style)
 
-### How to Run
+### How to Run Transformer
 
 **Train the VQ-VAE:**
+
 ```bash
 python train_vqvae.py
 ```
 
 **Train the Transformer:**
+
 ```bash
 python train_transformer.py
 ```
 
 **Generate new images:**
+
 ```bash
 python test_transformer.py
 ```
@@ -223,6 +243,7 @@ python test_transformer.py
 ---
 
 ## 📦 Batch Data Generation
+
 Tools included to generate large-scale datasets (600+ images).
 
 ```text
@@ -232,6 +253,7 @@ batch_transformer.py → Generates Input/Output Pairs
 ```
 
 **Run example:**
+
 ```bash
 python batch_scripts/batch_translator.py
 ```
@@ -241,14 +263,17 @@ python batch_scripts/batch_translator.py
 ## 📊 Results & Observations
 
 **CycleGAN**
+
 - Early epochs: Blurry structure  
 - Later epochs: Clear zebra patterns  
 
 **Diffusion**
+
 - Recovers semantic structure from heavy noise  
 - Demonstrates learned image distribution  
 
 **Transformer**
+
 - Successfully learns discrete representations (Tokens)  
 - Generates novel image compositions  
   (Impressionist style on CIFAR-10)
@@ -256,6 +281,7 @@ python batch_scripts/batch_translator.py
 ---
 
 ## 📚 References
+
 - Zhu et al., ICCV 2017 (CycleGAN)  
 - Ho et al., NeurIPS 2020 (DDPM)  
 - Van den Oord et al., NeurIPS 2017 (VQ-VAE)  
