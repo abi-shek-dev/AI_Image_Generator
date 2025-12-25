@@ -1,4 +1,4 @@
-# Generative AI Lab
+# Generative AI Lab - By Xe54z (Abishek / abi-shek-dev)
 
 ## Domain Translation, Image Synthesis & Restoration
 
