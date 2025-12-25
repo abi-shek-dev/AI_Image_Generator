@@ -7,4 +7,9 @@ __pycache__/
 /data/
 /checkpoints/
 
-batch_scripts/
+batch_scripts/batch_denoiser_results/
+batch_scripts/batch_translation_results/
+batch_scripts/batch_transformer_results/
+batch_scripts/batch_gan_results/
+batch_scripts/batch_diffusion_results/
+batch_scripts/batch_transformer_results.zip
