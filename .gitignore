@@ -6,3 +6,5 @@ __pycache__/
 # Ignore Data (Too big for GitHub)
 /data/
 /checkpoints/
+
+batch_scripts/
