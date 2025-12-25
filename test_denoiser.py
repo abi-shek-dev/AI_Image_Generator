@@ -74,7 +74,7 @@ def test_denoising():
     
     # 3. Add Noise (Simulation)
     # Let's try 200 steps. It's enough to corrupt the image but easier to recover.
-    STEPS = 200 
+    STEPS = 50 
     t = torch.tensor([STEPS]).to(DEVICE)
     noisy_image, _ = diffusion.add_noise(x0, t)
     
